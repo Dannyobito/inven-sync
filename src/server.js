@@ -3,6 +3,7 @@
 require('dotenv').config();
 
 const Hapi = require('@hapi/hapi');
+const { sequelize } = require('./models');
 
 const init = async () => {
   const server = Hapi.server({
@@ -15,6 +16,12 @@ const init = async () => {
     path: '/health',
     handler: () => ({ status: 'ok' }),
   });
+
+  await sequelize.authenticate();
+  console.log('Database connection established.');
+
+  await sequelize.sync();
+  console.log('Models synced.');
 
   await server.start();
   const displayHost =
