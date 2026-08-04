@@ -1,0 +1,17 @@
+{
+  "name": "inventory-sync-demo",
+  "version": "1.0.0",
+  "description": "Hapi + Postgres service that syncs Shopify-shaped inventory webhooks",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node src/seed.js"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^21.3.2",
+    "dotenv": "^16.4.5",
+    "pg": "^8.11.5",
+    "sequelize": "^6.37.3"
+  }
+}
