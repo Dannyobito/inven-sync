@@ -5,6 +5,7 @@ require('dotenv').config();
 const Hapi = require('@hapi/hapi');
 const { sequelize } = require('./models');
 const inventoryRoutes = require('./routes/inventory');
+const webhookRoutes = require('./routes/webhooks');
 
 const init = async () => {
   const server = Hapi.server({
@@ -12,7 +13,7 @@ const init = async () => {
     host: process.env.HOST || '0.0.0.0',
   });
 
-  server.route(inventoryRoutes);
+  server.route([...inventoryRoutes, ...webhookRoutes]);
 
   server.route({
     method: 'GET',
