@@ -4,12 +4,15 @@ require('dotenv').config();
 
 const Hapi = require('@hapi/hapi');
 const { sequelize } = require('./models');
+const inventoryRoutes = require('./routes/inventory');
 
 const init = async () => {
   const server = Hapi.server({
     port: process.env.PORT || 5005,
     host: process.env.HOST || '0.0.0.0',
   });
+
+  server.route(inventoryRoutes);
 
   server.route({
     method: 'GET',
