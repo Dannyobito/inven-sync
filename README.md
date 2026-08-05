@@ -10,12 +10,15 @@ at-least-once delivery). Blindly applying every delivery double-writes stock.
 
 ## What it does
 
+- `GET /` — Swagger UI (OpenAPI examples + Try it out)
 - `POST /webhooks/inventory-sync` — body `{ inventory_item_id, location_id, available }`
   plus `x-mock-webhook-id` header (mocks Shopify’s `X-Shopify-Webhook-Id`)
 - Idempotency via a unique `sync_events.webhookId` row inside a DB transaction
 - Unknown catalog IDs → `404` (does not invent rows)
 - `GET /inventory` — joined stock view
 - `GET /health`
+
+Live docs: https://inven-sync.onrender.com/
 
 Seed data: 2 locations, 6 boutique SKUs, starting levels.
 
